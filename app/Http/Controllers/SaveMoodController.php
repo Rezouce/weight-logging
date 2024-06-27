@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Weight;
+use App\Models\Mood;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 
-class SaveWeightController
+class SaveMoodController
 {
     public function __invoke(): RedirectResponse
     {
         $date = new Carbon(request()->get('date'));
 
-        $weight = Weight::firstOrNew(['date' => $date]);
+        $mood = Mood::firstOrNew(['date' => $date]);
 
-        $weight->weight = request()->get('weight') * 100;
+        $mood->value = request()->get('mood');
 
-        $weight->save();
+        $mood->save();
 
         return redirect()->route('index');
     }

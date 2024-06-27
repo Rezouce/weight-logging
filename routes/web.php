@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\SaveMoodController;
 use App\Http\Controllers\SaveWeightController;
-use App\Models\Weight;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', IndexController::class)->name('index');
-Route::post('/', SaveWeightController::class)->name('save-weight');
+Route::post('/weight', SaveWeightController::class)->name('save-weight');
+Route::post('/mood', SaveMoodController::class)->name('save-mood');
