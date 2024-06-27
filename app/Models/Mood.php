@@ -34,7 +34,7 @@ class Mood extends Model
         $today = Carbon::today();
         $day = Carbon::today()->subYear();
 
-        while ($day->lt($today)) {
+        while ($day->lte($today)) {
             $mood = $registeredMoods->first(fn (Mood $mood) => $mood->date->eq($day));
 
             if (!$mood instanceof Mood) {
