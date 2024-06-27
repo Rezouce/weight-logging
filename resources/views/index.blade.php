@@ -162,10 +162,10 @@
             ]));
         @endphp
 
-        var chart = new CanvasJS.Chart("chartContainer", {
+        const chart = new CanvasJS.Chart('chartContainer', {
             animationEnabled: true,
             data: [{
-                type: "line",
+                type: 'line',
                 dataPoints: data.map(item => ({
                     x: new Date(item.x),
                     y: item.y / 100

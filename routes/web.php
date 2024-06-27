@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\IndexWeightController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\SaveWeightController;
 use App\Models\Weight;
 use Illuminate\Support\Facades\Route;
@@ -16,5 +16,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', IndexWeightController::class)->name('index-weight');
+Route::get('/', IndexController::class)->name('index');
 Route::post('/', SaveWeightController::class)->name('save-weight');

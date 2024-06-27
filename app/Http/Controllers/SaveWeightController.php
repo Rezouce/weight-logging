@@ -18,6 +18,6 @@ class SaveWeightController
 
             $weight->save();
 
-            return redirect()->route('index-weight');
+            return redirect()->route('index');
         }
 }

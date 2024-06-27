@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Weight;
 use Illuminate\Contracts\View\View;
 
-class IndexWeightController
+class IndexController
 {
         public function __invoke(): View
         {
@@ -14,7 +14,7 @@ class IndexWeightController
                 ->limit(500)
                 ->get();
 
-            return view('add-weight', [
+            return view('index', [
                 'weights' => $lastWeights,
                 'lastWeight' => $lastWeights->first() ?? Weight::createEmpty(),
             ]);
