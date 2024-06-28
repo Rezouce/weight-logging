@@ -50,7 +50,7 @@
                 <div class="mb-4 flex gap-2 items-center">
                     <label class="w-16 font-bold" for="date">Date:</label>
                     <input class="flex-grow px-4 py-2 border" type="date" id="date" name="date"
-                           value="{{ Carbon::now()->format('Y-m-d') }}"/>
+                           value="{{ Carbon::yesterday()->format('Y-m-d') }}"/>
                 </div>
                 <div class="mb-4 flex gap-2 items-center">
                     <label class="w-16 font-bold" for="weight">Mood:</label>
