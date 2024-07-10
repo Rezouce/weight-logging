@@ -22,8 +22,8 @@
     </style>
 </head>
 <body class="antialiased">
-<div class="max-w-5xl mx-auto p-8">
-    <div class="flex flex-row gap-8">
+<div class="max-w-7xl mx-auto p-8">
+    <div class="flex flex-row gap-8 my-8">
         <div class="w-1/2">
             <h1 class="text-3xl font-bold mb-8 text-center">New weight</h1>
             <form method="POST" action="{{ route('save-weight') }}" class="w-full bg-gray-50 p-8 rounded-lg">
@@ -108,8 +108,49 @@
             </form>
         </div>
     </div>
-    <div class="my-8 flex gap-8">
-        <div class="w-2/3">
+    <div class="flex flex-row gap-8 my-8">
+        <div class="w-1/2">
+            <h1 class="text-3xl font-bold mb-8 text-center">Last 5 days</h1>
+
+            <div class="bg-gray-50 p-8 rounded-lg">
+                <table class="border-collapse bg-white border border-rose-50 text-center w-full">
+                    <tr class="bg-gray-500 text-white">
+                        <th class="py-2">Date</th>
+                        <th class="py-2">Weight</th>
+                        <th class="py-2">Evolution</th>
+                    </tr>
+                    @foreach ($weights->slice(0, 5) as $key => $weight)
+                        <tr @class([
+                        'transition-all duration-500 hover:bg-rose-300 hover:scale-[1.1]',
+                        'bg-rose-50' => $key % 2 === 1,
+                        'border-2 border-rose-800 bg-gray-50' => $weight->date->isToday(),
+                    ])>
+                            <td class="py-2">{{ $weight->date->format('d/m/Y') }}</td>
+                            <td class="py-2">{{ $weight->weight / 100 }} kg</td>
+                            <td class="py-2">
+                                @php $evolution = $weight->evolutionSince((new Carbon($weight->date))->subDays()) @endphp
+                                @if ($evolution > 0)
+                                    <svg class="w-6 inline fill-red-700" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_1076_36064)"> <path d="M1.70711 18.7071C1.31658 19.0976 0.683417 19.0976 0.292893 18.7071C-0.0976311 18.3166 -0.0976311 17.6834 0.292893 17.2929L7.79289 9.79289C8.18342 9.40237 8.81658 9.40237 9.20711 9.79289L13.5 14.0858L20.5858 7H17C16.4477 7 16 6.55228 16 6C16 5.44772 16.4477 5 17 5H22.9993C23.0003 5 23.002 5 23.003 5C23.1375 5.0004 23.2657 5.02735 23.3828 5.07588C23.5007 5.12468 23.6112 5.19702 23.7071 5.29289C23.8902 5.47595 23.9874 5.71232 23.9989 5.95203C23.9996 5.96801 24 5.984 24 6C24 6.00033 24 5.99967 24 6V12C24 12.5523 23.5523 13 23 13C22.4477 13 22 12.5523 22 12V8.41421L14.2071 16.2071C13.8166 16.5976 13.1834 16.5976 12.7929 16.2071L8.5 11.9142L1.70711 18.7071Z"></path> </g> <defs> <clipPath id="clip0_1076_36064"> <rect width="24" height="24" fill="white"></rect> </clipPath> </defs> </g></svg>
+                                    +{{ $evolution / 100 }} kg
+                                @elseif ($evolution === 0)
+                                    -
+                                @else
+                                    <svg class="w-6 inline fill-green-700" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_1076_36065)"> <path d="M1.70711 5.29289C1.31658 4.90237 0.683417 4.90237 0.292893 5.29289C-0.0976311 5.68342 -0.0976311 6.31658 0.292893 6.70711L7.79289 14.2071C8.18342 14.5976 8.81658 14.5976 9.20711 14.2071L13.5 9.91421L20.5858 17H17C16.4477 17 16 17.4477 16 18C16 18.5523 16.4477 19 17 19H22.9993L23.003 19C23.1375 18.9996 23.2657 18.9727 23.3828 18.9241C23.5007 18.8753 23.6112 18.803 23.7071 18.7071C23.8902 18.524 23.9874 18.2877 23.9989 18.048C23.9996 18.032 24 18.016 24 18V12C24 11.4477 23.5523 11 23 11C22.4477 11 22 11.4477 22 12V15.5858L14.2071 7.79289C13.8166 7.40237 13.1834 7.40237 12.7929 7.79289L8.5 12.0858L1.70711 5.29289Z"></path> </g> <defs> <clipPath id="clip0_1076_36065"> <rect width="24" height="24" fill="white"></rect> </clipPath> </defs> </g></svg>
+                                    {{ $evolution / 100 }} kg
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                    @if($weights->isEmpty())
+                        <tr>
+                            <td colspan="3" class="py-2">
+                                No weight logged.
+                            </td>
+                        </tr>
+                    @endif
+                </table>
+            </div>
+
             <h1 class="text-3xl font-bold mb-8 text-center">Weight evolution</h1>
 
             <div class="bg-gray-50 p-8 rounded-lg">
@@ -176,72 +217,37 @@
 
             </div>
         </div>
-        <div class="flex-grow">
-            <h1 class="text-3xl font-bold mb-8 text-center">Last 5 days</h1>
+        <div class="w-1/2">
+            <h1 class="text-3xl font-bold mb-8 text-center">Mood evolution</h1>
 
-            <div class="bg-gray-50 p-8 rounded-lg">
-                <table class="border-collapse bg-white border border-rose-50 text-center w-full">
-                    <tr class="bg-gray-500 text-white">
-                        <th class="py-2">Date</th>
-                        <th class="py-2">Weight</th>
-                        <th class="py-2">Evolution</th>
-                    </tr>
-                    @foreach ($weights->slice(0, 5) as $key => $weight)
-                        <tr @class([
-                        'transition-all duration-500 hover:bg-rose-300 hover:scale-[1.1]',
-                        'bg-rose-50' => $key % 2 === 1,
-                        'border-2 border-rose-800 bg-gray-50' => $weight->date->isToday(),
-                    ])>
-                            <td class="py-2">{{ $weight->date->format('d/m/Y') }}</td>
-                            <td class="py-2">{{ $weight->weight / 100 }} kg</td>
-                            <td class="py-2">
-                                @php $evolution = $weight->evolutionSince((new Carbon($weight->date))->subDays()) @endphp
-                                @if ($evolution > 0)
-                                    <svg class="w-6 inline fill-red-700" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_1076_36064)"> <path d="M1.70711 18.7071C1.31658 19.0976 0.683417 19.0976 0.292893 18.7071C-0.0976311 18.3166 -0.0976311 17.6834 0.292893 17.2929L7.79289 9.79289C8.18342 9.40237 8.81658 9.40237 9.20711 9.79289L13.5 14.0858L20.5858 7H17C16.4477 7 16 6.55228 16 6C16 5.44772 16.4477 5 17 5H22.9993C23.0003 5 23.002 5 23.003 5C23.1375 5.0004 23.2657 5.02735 23.3828 5.07588C23.5007 5.12468 23.6112 5.19702 23.7071 5.29289C23.8902 5.47595 23.9874 5.71232 23.9989 5.95203C23.9996 5.96801 24 5.984 24 6C24 6.00033 24 5.99967 24 6V12C24 12.5523 23.5523 13 23 13C22.4477 13 22 12.5523 22 12V8.41421L14.2071 16.2071C13.8166 16.5976 13.1834 16.5976 12.7929 16.2071L8.5 11.9142L1.70711 18.7071Z"></path> </g> <defs> <clipPath id="clip0_1076_36064"> <rect width="24" height="24" fill="white"></rect> </clipPath> </defs> </g></svg>
-                                    +{{ $evolution / 100 }} kg
-                                @elseif ($evolution === 0)
-                                    -
-                                @else
-                                    <svg class="w-6 inline fill-green-700" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_1076_36065)"> <path d="M1.70711 5.29289C1.31658 4.90237 0.683417 4.90237 0.292893 5.29289C-0.0976311 5.68342 -0.0976311 6.31658 0.292893 6.70711L7.79289 14.2071C8.18342 14.5976 8.81658 14.5976 9.20711 14.2071L13.5 9.91421L20.5858 17H17C16.4477 17 16 17.4477 16 18C16 18.5523 16.4477 19 17 19H22.9993L23.003 19C23.1375 18.9996 23.2657 18.9727 23.3828 18.9241C23.5007 18.8753 23.6112 18.803 23.7071 18.7071C23.8902 18.524 23.9874 18.2877 23.9989 18.048C23.9996 18.032 24 18.016 24 18V12C24 11.4477 23.5523 11 23 11C22.4477 11 22 11.4477 22 12V15.5858L14.2071 7.79289C13.8166 7.40237 13.1834 7.40237 12.7929 7.79289L8.5 12.0858L1.70711 5.29289Z"></path> </g> <defs> <clipPath id="clip0_1076_36065"> <rect width="24" height="24" fill="white"></rect> </clipPath> </defs> </g></svg>
-                                    {{ $evolution / 100 }} kg
-                                @endif
-                            </td>
-                        </tr>
-                    @endforeach
-                    @if($weights->isEmpty())
-                        <tr>
-                            <td colspan="3" class="py-2">
-                                No weight logged.
-                            </td>
-                        </tr>
-                    @endif
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <div>
-        <h1 class="text-3xl font-bold mb-8 text-center">Mood evolution</h1>
-
-        <div class="flex justify-center">
-            <div>
-                @foreach($moodsGroupByMonth as $key => $moods)
+            <div class="flex justify-center">
+                <div>
                     <div class="flex">
-                        <div class="text-xs w-16">{{ $key }}</div>
+                        <div class="text-xs w-16"></div>
                         <div class="flex gap-1 mb-1">
-                            @foreach($moods as $mood)
-                                <div @class([
-                                'rounded w-4 h-4',
+                            @for($i = 1; $i <= 31; ++$i)
+                                <div class="w-3 h-3 text-xs text-center">{{ sprintf('%02d', $i) }}</div>
+                            @endfor
+                        </div>
+                    </div>
+                    @foreach($moodsGroupByMonth as $key => $moods)
+                        <div class="flex">
+                            <div class="text-xs w-16">{{ $key }}</div>
+                            <div class="flex gap-1 mb-1">
+                                @foreach($moods as $mood)
+                                    <div @class([
+                                'rounded w-3 h-3',
                                 'bg-slate-300' => $mood->value === 0,
                                 'bg-red-600' => $mood->value === 1,
                                 'bg-orange-400' => $mood->value === 2,
                                 'bg-yellow-400' => $mood->value === 3,
                                 'bg-green-600' => $mood->value === 4,
                             ]) title="{{ $mood->date->format('d/m/Y') }}"></div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
