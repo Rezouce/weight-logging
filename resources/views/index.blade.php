@@ -58,7 +58,7 @@
                         <label class="w-1/4 flex justify-center">
                             <input class="hidden" type="radio" name="mood" value="1"/>
 
-                            <svg class="w-10 transition-all duration-300 stroke-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="w-10 transition-all duration-300 stroke-red-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 23.25C18.2132 23.25 23.25 18.2132 23.25 12C23.25 5.7868 18.2132 0.75 12 0.75C5.7868 0.75 0.75 5.7868 0.75 12C0.75 18.2132 5.7868 23.25 12 23.25Z" />
                                 <path d="M14.5176 9.02881C14.6749 9.45542 14.9578 9.82463 15.3294 10.0875C15.7094 10.3562 16.1633 10.5005 16.6287 10.5005C17.0941 10.5005 17.548 10.3562 17.9279 10.0875C18.2995 9.82463 18.5825 9.45542 18.7398 9.02881" />
                                 <path d="M5.26123 9.03113C5.41868 9.45676 5.70128 9.82511 6.07222 10.0875C6.45216 10.3562 6.90609 10.5005 7.37147 10.5005C7.83685 10.5005 8.29078 10.3562 8.67073 10.0875C9.04167 9.82511 9.32427 9.45676 9.48172 9.03113" />
@@ -69,7 +69,7 @@
                         <label class="w-1/4 flex justify-center">
                             <input class="hidden" type="radio" name="mood" value="2"/>
 
-                            <svg class="w-10 transition-all duration-300 stroke-orange-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="w-10 transition-all duration-300 stroke-yellow-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 23.25C18.2132 23.25 23.25 18.2132 23.25 12C23.25 5.7868 18.2132 0.75 12 0.75C5.7868 0.75 0.75 5.7868 0.75 12C0.75 18.2132 5.7868 23.25 12 23.25Z" />
                                 <path d="M7.5 15.75H16.5" />
                                 <path d="M9.493 9C9.33798 9.4388 9.05071 9.81874 8.67076 10.0875C8.29081 10.3562 7.83688 10.5005 7.3715 10.5005C6.90612 10.5005 6.45219 10.3562 6.07224 10.0875C5.69229 9.81874 5.40502 9.4388 5.25 9" />
@@ -80,7 +80,7 @@
                         <label class="w-1/4 flex justify-center">
                             <input class="hidden" type="radio" name="mood" checked="checked" value="3"/>
 
-                            <svg class="w-10 transition-all duration-300 stroke-yellow-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="w-10 transition-all duration-300 stroke-emerald-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 23.25C18.2132 23.25 23.25 18.2132 23.25 12C23.25 5.7868 18.2132 0.75 12 0.75C5.7868 0.75 0.75 5.7868 0.75 12C0.75 18.2132 5.7868 23.25 12 23.25Z" />
                                 <path d="M18.75 10.5005C18.595 10.0617 18.3077 9.68178 17.9278 9.41305C17.5478 9.14432 17.0939 9.00001 16.6285 9.00001C16.1631 9.00001 15.7092 9.14432 15.3292 9.41305C14.9551 9.67765 14.6709 10.0501 14.5142 10.4803" />
                                 <path d="M5.25018 10.5005C5.4052 10.0617 5.69247 9.68178 6.07242 9.41305C6.45237 9.14432 6.9063 9.00001 7.37168 9.00001C7.83706 9.00001 8.29099 9.14432 8.67094 9.41305C9.03808 9.67272 9.31868 10.0362 9.47705 10.4563" />
@@ -91,7 +91,7 @@
                         <label class="w-1/4 flex justify-center">
                             <input class="hidden" type="radio" name="mood" value="4"/>
 
-                            <svg class="w-10 transition-all duration-300 stroke-green-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="w-10 transition-all duration-300 stroke-blue-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 23.25C18.2132 23.25 23.25 18.2132 23.25 12C23.25 5.7868 18.2132 0.75 12 0.75C5.7868 0.75 0.75 5.7868 0.75 12C0.75 18.2132 5.7868 23.25 12 23.25Z" />
                                 <path d="M11.9982 18.7542C13.2563 18.7542 14.4893 18.4027 15.5583 17.7394C16.6202 17.0804 17.4782 16.1399 18.0371 15.0224L5.94824 15C6.50681 16.1273 7.3692 17.076 8.43818 17.7394C9.50715 18.4027 10.7402 18.7542 11.9982 18.7542Z" />
                                 <path d="M18.75 10.5005C18.595 10.0617 18.3077 9.68178 17.9278 9.41305C17.5478 9.14432 17.0939 9.00001 16.6285 9.00001C16.1631 9.00001 15.7092 9.14432 15.3292 9.41305C14.9572 9.67617 14.6741 10.0459 14.5169 10.4731" />
@@ -221,28 +221,30 @@
             <h1 class="text-3xl font-bold mb-8 text-center">Mood evolution</h1>
 
             <div class="flex justify-center">
-                <div>
-                    <div class="flex">
-                        <div class="text-xs w-16"></div>
-                        <div class="flex gap-1 mb-1">
-                            @for($i = 1; $i <= 31; ++$i)
-                                <div class="w-3 h-3 text-xs text-center">{{ sprintf('%02d', $i) }}</div>
-                            @endfor
+                <div class="text-center divide-y">
+                    <div class="w-full h-5"></div>
+                    @for($i = 1; $i <= 31; ++$i)
+                        <div class="h-5 w-8 text-xs text-center flex items-center">
+                            <div class="w-full">{{ sprintf('%02d', $i) }}</div>
                         </div>
-                    </div>
-                    @foreach($moodsGroupByMonth as $key => $moods)
-                        <div class="flex">
-                            <div class="text-xs w-16">{{ $key }}</div>
-                            <div class="flex gap-1 mb-1">
+                    @endfor
+                </div>
+                <div class="flex flex-row grow divide-x border-l border-r">
+                    @foreach($moodsGroupByMonth as $moods)
+                        <div class="text-center grow">
+                            <div class="text-xs h-5">{{ substr($moods->getMonthName(), 0, 3) }}.</div>
+                            <div class="flex flex-col divide-y border-b">
                                 @foreach($moods as $mood)
                                     <div @class([
-                                'rounded w-3 h-3',
-                                'bg-slate-300' => $mood->value === 0,
-                                'bg-red-600' => $mood->value === 1,
-                                'bg-orange-400' => $mood->value === 2,
-                                'bg-yellow-400' => $mood->value === 3,
-                                'bg-green-600' => $mood->value === 4,
-                            ]) title="{{ $mood->date->format('d/m/Y') }}"></div>
+                                    'w-full h-5',
+                                    'bg-slate-50' => $mood->value === 0,
+                                    'bg-red-300' => $mood->value === 1,
+                                    'bg-yellow-200' => $mood->value === 2,
+                                    'bg-emerald-300' => $mood->value === 3,
+                                    'bg-blue-300' => $mood->value === 4,
+                                    'bg-slate-400' => $mood->date->isToday()
+                                ]) title="{{ $mood->date->format('d/m/Y') }}">
+                                    </div>
                                 @endforeach
                             </div>
                         </div>

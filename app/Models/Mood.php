@@ -22,30 +22,27 @@ class Mood extends Model
         'value' => 'int',
     ];
 
-    public static function getMoodsGroupByMonthFromLast365Days(): Collection
+    public static function getMoodsGroupByMonth(): Collection
     {
-        $registeredMoods = static::query()
-            ->orderBy('date', 'DESC')
-            ->limit(365)
-            ->get();
-
         $allMoods = collect();
 
-        $today = Carbon::today();
-        $day = Carbon::today()->subYear();
-
-        while ($day->lte($today)) {
-            $mood = $registeredMoods->first(fn (Mood $mood) => $mood->date->eq($day));
-
-            if (!$mood instanceof Mood) {
-                $mood = new Mood(['date' => $day, 'value' => 0]);
-            }
-
-            $allMoods->push($mood);
-
-            $day->addDay();
+        for ($i = 12; $i >= 0; --$i) {
+            $allMoods->push(Mood::getMonthMoods($i));
         }
 
-        return $allMoods->groupBy((fn (Mood $mood) => $mood->date->year . '-' . $mood->date->month));
+        return $allMoods;
+    }
+
+    public static function getMonthMoods(int $subMonth): MonthMoods
+    {
+        $firstDayDate = Carbon::now()->firstOfMonth()->subMonths($subMonth);
+        $lastDayDate = (clone $firstDayDate)->lastOfMonth();
+
+        $registeredMoods = static::query()
+            ->orderBy('date', 'ASC')
+            ->whereBetween('date', [$firstDayDate, $lastDayDate])
+            ->get();
+
+        return new MonthMoods($firstDayDate->month, $registeredMoods);
     }
 }

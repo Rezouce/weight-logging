@@ -18,7 +18,7 @@ class IndexController
         return view('index', [
             'weights' => $lastWeights,
             'lastWeight' => $lastWeights->first() ?? Weight::createEmpty(),
-            'moodsGroupByMonth' => Mood::getMoodsGroupByMonthFromLast365Days(),
+            'moodsGroupByMonth' => Mood::getMoodsGroupByMonth(),
         ]);
     }
 }
