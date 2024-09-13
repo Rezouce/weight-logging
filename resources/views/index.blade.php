@@ -128,7 +128,7 @@
                             <td class="py-2">{{ $weight->date->format('d/m/Y') }}</td>
                             <td class="py-2">{{ $weight->weight / 100 }} kg</td>
                             <td class="py-2">
-                                @php $evolution = $weight->evolutionSince((new Carbon($weight->date))->subDays()) @endphp
+                                @php $evolution = $weight->evolutionSince($weight->previous()->date) @endphp
                                 @if ($evolution > 0)
                                     <svg class="w-6 inline fill-red-700" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_1076_36064)"> <path d="M1.70711 18.7071C1.31658 19.0976 0.683417 19.0976 0.292893 18.7071C-0.0976311 18.3166 -0.0976311 17.6834 0.292893 17.2929L7.79289 9.79289C8.18342 9.40237 8.81658 9.40237 9.20711 9.79289L13.5 14.0858L20.5858 7H17C16.4477 7 16 6.55228 16 6C16 5.44772 16.4477 5 17 5H22.9993C23.0003 5 23.002 5 23.003 5C23.1375 5.0004 23.2657 5.02735 23.3828 5.07588C23.5007 5.12468 23.6112 5.19702 23.7071 5.29289C23.8902 5.47595 23.9874 5.71232 23.9989 5.95203C23.9996 5.96801 24 5.984 24 6C24 6.00033 24 5.99967 24 6V12C24 12.5523 23.5523 13 23 13C22.4477 13 22 12.5523 22 12V8.41421L14.2071 16.2071C13.8166 16.5976 13.1834 16.5976 12.7929 16.2071L8.5 11.9142L1.70711 18.7071Z"></path> </g> <defs> <clipPath id="clip0_1076_36064"> <rect width="24" height="24" fill="white"></rect> </clipPath> </defs> </g></svg>
                                     +{{ $evolution / 100 }} kg
@@ -156,11 +156,11 @@
             <div class="bg-gray-50 p-8 rounded-lg">
                 <table class="w-full text-center bg-white">
                     @php
-                        $lastWeek = $lastWeight->evolutionSince(new Carbon('last week')) / 100;
-                        $lastMonth = $lastWeight->evolutionSince(new Carbon('last month')) / 100;
-                        $lastQuarter = $lastWeight->evolutionSince(new Carbon('- 3 months')) / 100;
-                        $lastSemester = $lastWeight->evolutionSince(new Carbon('- 6 months')) / 100;
-                        $lastYear = $lastWeight->evolutionSince(new Carbon('last year')) / 100;
+                        $lastWeek = $lastWeight->evolutionSince(Carbon::now()->subWeek()) / 100;
+                        $lastMonth = $lastWeight->evolutionSince(Carbon::now()->subMonth()) / 100;
+                        $lastQuarter = $lastWeight->evolutionSince(Carbon::now()->subMonths(3)) / 100;
+                        $lastSemester = $lastWeight->evolutionSince(Carbon::now()->subMonths(6)) / 100;
+                        $lastYear = $lastWeight->evolutionSince(Carbon::now()->subYear()) / 100;
                     @endphp
                     <tr class="bg-gray-500 text-white">
                         <th class="py-2">Last week</th>
