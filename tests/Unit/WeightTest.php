@@ -45,4 +45,11 @@ class WeightTest extends TestCase
 
         $this->assertEquals(500, $weight->evolutionSince(new Carbon('2024-09-12')));
     }
+
+    public function test_it_returns_the_weight_evolution_even_when_the_database_is_empty(): void
+    {
+        $weight = Weight::factory()->date(('2024-09-14'))->weight(9000)->make();
+
+        $this->assertEquals(0, $weight->evolutionSince(new Carbon('2024-09-12')));
+    }
 }

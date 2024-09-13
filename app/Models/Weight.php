@@ -27,7 +27,7 @@ class Weight extends Model
             ->orderBy('date', 'DESC')
             ->first() ?? static::createEmpty($this->weight);
 
-        if ($since->diff($sinceWeight->date)->days === 0) {
+        if ($since->diff($sinceWeight->date)->days === 0 || $sinceWeight->doesntExist()) {
             return $this->weight - $sinceWeight->weight;
         }
 
