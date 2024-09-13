@@ -220,30 +220,35 @@
         <div class="w-1/2">
             <h1 class="text-3xl font-bold mb-8 text-center">Mood evolution</h1>
 
-            <div class="flex justify-center">
+            <div class="flex justify-center border">
                 <div class="text-center divide-y">
-                    <div class="w-full h-5"></div>
+                    <div class="w-full h-8"></div>
                     @for($i = 1; $i <= 31; ++$i)
-                        <div class="h-5 w-8 text-xs text-center flex items-center">
+                        <div class="h-5 w-8 text-xs text-center flex items-center bg-slate-100">
                             <div class="w-full">{{ sprintf('%02d', $i) }}</div>
                         </div>
                     @endfor
                 </div>
-                <div class="flex flex-row grow divide-x border-l border-r">
+                <div class="flex flex-row grow divide-x border-l">
                     @foreach($moodsGroupByMonth as $moods)
-                        <div class="text-center grow">
-                            <div class="text-xs h-5">{{ substr($moods->getMonthName(), 0, 3) }}.</div>
-                            <div class="flex flex-col divide-y border-b">
+                        <div class="grow">
+                            <div class="text-xs h-8 flex items-center bg-slate-100 border-b">
+                                <div class="w-full text-center">{{ substr($moods->getMonthName(), 0, 3) }}.</div>
+                            </div>
+                            <div @class([
+                                'flex flex-col divide-y ',
+                                'border-b' => count($moods) < 31,
+                            ])>
                                 @foreach($moods as $mood)
                                     <div @class([
-                                    'w-full h-5',
-                                    'bg-slate-50' => $mood->value === 0,
-                                    'bg-red-300' => $mood->value === 1,
-                                    'bg-yellow-200' => $mood->value === 2,
-                                    'bg-emerald-300' => $mood->value === 3,
-                                    'bg-blue-300' => $mood->value === 4,
-                                    'bg-slate-400' => $mood->date->isToday()
-                                ]) title="{{ $mood->date->format('d/m/Y') }}">
+                                        'w-full h-5',
+                                        'bg-slate-50' => $mood->value === 0,
+                                        'bg-red-300' => $mood->value === 1,
+                                        'bg-yellow-200' => $mood->value === 2,
+                                        'bg-emerald-300' => $mood->value === 3,
+                                        'bg-blue-300' => $mood->value === 4,
+                                        'bg-slate-400' => $mood->date->isToday()
+                                    ]) title="{{ $mood->date->format('d/m/Y') }}">
                                     </div>
                                 @endforeach
                             </div>

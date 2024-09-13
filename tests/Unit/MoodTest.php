@@ -17,6 +17,8 @@ class MoodTest extends TestCase
 
         $moods = Mood::getMonthMoods(1);
 
+        $this->assertCount(1, $moods);
+
         $this->assertEquals('August', $moods->getMonthName());
         $this->assertCount(31, $moods);
         foreach ($moods as $i => $mood) {

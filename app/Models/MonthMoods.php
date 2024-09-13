@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Countable;
 use Illuminate\Support\Collection;
 use IteratorAggregate;
 use Traversable;
 
-class MonthMoods implements IteratorAggregate
+class MonthMoods implements IteratorAggregate, Countable
 {
     private Carbon $firstDayOfMonth;
     private Collection $moods;
@@ -49,5 +50,10 @@ class MonthMoods implements IteratorAggregate
     public function getMonthName(): string
     {
         return $this->firstDayOfMonth->monthName;
+    }
+
+    public function count(): int
+    {
+        return $this->moods->count();
     }
 }
