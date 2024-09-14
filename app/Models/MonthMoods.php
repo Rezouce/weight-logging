@@ -13,10 +13,11 @@ class MonthMoods implements IteratorAggregate, Countable
     private Carbon $firstDayOfMonth;
     private Collection $moods;
 
-    public function __construct(int $monthNumber, Collection $registeredMoods)
+    public function __construct(int $year, int $month, Collection $registeredMoods)
     {
         $this->firstDayOfMonth = Carbon::now()
-            ->month($monthNumber)
+            ->year($year)
+            ->month($month)
             ->firstOfMonth();
 
         $this->moods = collect();

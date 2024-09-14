@@ -43,6 +43,6 @@ class Mood extends Model
             ->whereBetween('date', [$firstDayDate, $lastDayDate])
             ->get();
 
-        return new MonthMoods($firstDayDate->month, $registeredMoods);
+        return new MonthMoods($firstDayDate->year, $firstDayDate->month, $registeredMoods);
     }
 }

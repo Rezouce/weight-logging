@@ -242,7 +242,7 @@
                                 @foreach($moods as $mood)
                                     <div @class([
                                         'w-full h-5',
-                                        'bg-slate-50' => $mood->value === 0,
+                                        'bg-slate-50' => $mood->value === 0 && ! $mood->date->isToday(),
                                         'bg-red-300' => $mood->value === 1,
                                         'bg-yellow-200' => $mood->value === 2,
                                         'bg-emerald-300' => $mood->value === 3,
