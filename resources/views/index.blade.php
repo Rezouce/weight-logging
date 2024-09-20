@@ -236,19 +236,22 @@
                                 <div class="w-full text-center">{{ substr($moods->getMonthName(), 0, 3) }}.</div>
                             </div>
                             <div @class([
-                                'flex flex-col divide-y ',
+                                'flex flex-col divide-y',
                                 'border-b' => count($moods) < 31,
                             ])>
                                 @foreach($moods as $mood)
                                     <div @class([
-                                        'w-full h-5',
+                                        'w-full h-5 relative',
                                         'bg-slate-50' => $mood->value === 0 && ! $mood->date->isToday(),
                                         'bg-red-300' => $mood->value === 1,
                                         'bg-yellow-200' => $mood->value === 2,
                                         'bg-emerald-300' => $mood->value === 3,
                                         'bg-blue-300' => $mood->value === 4,
                                         'bg-slate-400' => $mood->date->isToday()
-                                    ]) title="{{ $mood->date->format('d/m/Y') }}">
+                                    ])>
+                                        <div class="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 z-10 min-w-full border min-h-full px-1 py-2 rounded text-xs transition-all opacity-0 hover:opacity-100 hover:scale-125 bg-inherit">
+                                            {{ $mood->date->format('d/m/y') }}
+                                        </div>
                                     </div>
                                 @endforeach
                             </div>
